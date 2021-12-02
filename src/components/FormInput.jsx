@@ -1,12 +1,12 @@
 import React from 'react'
 import "./FormInput.css"
 
-const FormInput = () => {
+const FormInput = (props) => {
     return (
         <div className="formInput">
 
-            <label>Username</label>
-            <input></input>
+            {/* <label>Username</label> */}
+            <input placeholder= {props.placeholder} onChange={}></input>
             
         </div>
     )
