@@ -1,24 +1,29 @@
-import "./App.css";
 import { useState } from "react";
-import FormInput from "./components/FormInput";
+import "./formInput.css";
 
-function App() {
-  const [ username, setUsername] = useState(" ");
+const FormInput = (props) => {
+  const [focused, setFocused] = useState(false);
+  const { label, errorMessage, onChange, id, ...inputProps } = props;
 
-  console.log(username)
+  const handleFocus = (e) => {
+    setFocused(true);
+  };
+
   return (
-    <div className="app">
-      <form>
-        <FormInput placeholder="Username" setUsername/>
-        <FormInput placeholder="Email Id"/>
-        <FormInput placeholder="Phone Number"/>
-        <FormInput placeholder="Age"/>
-
-
-
-      </form>
+    <div className="formInput">
+      <label>{label}</label>
+      <input
+        {...inputProps}
+        onChange={onChange}
+        onBlur={handleFocus}
+        onFocus={() =>
+          inputProps.name === "confirmPassword" && setFocused(true)
+        }
+        focused={focused.toString()}
+      />
+      <span>{errorMessage}</span>
     </div>
   );
-}
+};
 
-export default App;
+export default FormInput;
